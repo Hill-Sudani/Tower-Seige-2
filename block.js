@@ -5,10 +5,11 @@ class block
         var options =
         {
             restitution: 0.5
-        };
+        }
         this.body = Bodies.rectangle(x, y, width, height, options);
         this.width = width;
         this.height = height;
+        this.visiblity = 255;
         World.add(world, this.body);
     }
     display() 
@@ -17,17 +18,33 @@ class block
         var angle = this.body.angle;
         
 
-        push();
+        if(this.body.speed<3)
+        {
+            push();
 
-        translate(pos.x, pos.y);
-        rotate(angle);
+            translate(pos.x, pos.y);
+            rotate(angle);
+            rectMode(CENTER);
+            fill("white");
+            strokeWeight(5);
+            stroke("green");
+            rect(0, 0, this.width, this.height);
 
-        rectMode(CENTER);
-        fill("white");
-        strokeWeight(5);
-        stroke("green");
-        rect(0, 0, this.width, this.height);
-
-        pop();
+            pop();
+        }
+        else
+        {
+            World.remove(this.body);
+            push();
+            this.visiblity = this.visiblity-5;
+            tint(255,this.visiblity);
+            rectMode(CENTER);
+            fill("white");
+            strokeWeight(5);
+            stroke("green");
+            rect(0, 0, this.width, this.height);
+            pop();
+        }
+    
     }
 }
