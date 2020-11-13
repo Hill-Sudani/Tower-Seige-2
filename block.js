@@ -36,7 +36,6 @@ class block
         {
             World.remove(world,this.body);
             push();
-            translate(pos.x,pos.y);
             this.visiblity = this.visiblity-5;
             tint(255,this.visiblity);
             rectMode(CENTER);
